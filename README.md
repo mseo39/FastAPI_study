@@ -18,3 +18,19 @@ python -m uvicorn main:app --reload
 * Uvicorn은 비동기 처리를 지원하여 대용량 트래픽을 처리할 때 높은 성능을 제공
 * FastAPI는 ASGI를 기반으로 구축되었으며, Uvicorn도 ASGI를 지원
 * FastAPI는 비동기 코드 작성을 지원하며, Uvicorn은 이를 효율적으로 실행
+
+## FastAPI 기본 서비스
+### Swagger
+```localhost:8000/docs```
+> API를 문서화하고 테스트하기 위한 도구
+![alt text](./image/swagger.png)
+
+### ReDoc 
+```localhost:8000/redoc```
+> 좀 더 깔끔한 UI로 API 문서를 제공하고 싶은 경우에 사용
+![alt text](./image/redoc.png)
+
+### openapi.json
+```localhost:8000/openapi.json```
+> API의 설명서를 정의하는 JSON 파일
+![alt text](./image/openapi_json.png)
