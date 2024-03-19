@@ -34,3 +34,39 @@ python -m uvicorn main:app --reload
 ```localhost:8000/openapi.json```
 > API의 설명서를 정의하는 JSON 파일
 ![alt text](./image/openapi_json.png)
+
+## fastAPI기초(3/5)
+
+![alt text](./image/3_5.png)
+### template 띄우기
+```python
+✅ 1. 설치
+#템플릿을 렌더링하기 위해 Jinja2 템플릿 엔진을 사용
+pip install jinja2
+
+✅ 2. 템플릿 파일이 위치한 디렉토리를 지정
+templates = Jinja2Templates(directory="templates")
+
+✅ 3. 응답으로 html을 보내기 위해 HTMLResponse로 지정
+@app.get('/cities/{city_id}', response_class=HTMLResponse)
+def get_city(request: Request, city_id: int):
+    city = db[city_id-1]
+    r = requests.get(f"http://worldtimeapi.org/api/timezone/{city['timezone']}")
+    cur_time = r.json()['datetime']
+
+    context = {'request':request, 'name':city['name'], 'timezone':city['timezone'], 'current_time': cur_time}
+
+    ✅ 4. TemplateResponse를 사용하여 
+          'city_list.html' 템플릿 파일을 렌더링하고, context를 전달
+          
+    return templates.TemplateResponse("city_detail.html", context)
+```
+
+```
+오류난 부분
+html에서 도시 이름과 Asia/Seoul 등록하면
+undefined - undefined added
+422 Unprocessable Entity 에러 발생
+-> xhr.setRequestHeader("Content-Type","application/json"); 코드 추가
+   기본값은 Content-Type: text/plain;charset=UTF-8
+```
