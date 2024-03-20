@@ -70,3 +70,16 @@ undefined - undefined added
 -> xhr.setRequestHeader("Content-Type","application/json"); 코드 추가
    기본값은 Content-Type: text/plain;charset=UTF-8
 ```
+
+### MySQL 연동
+[MySQL 설치](https://dev.mysql.com/downloads/windows/installer/8.0.html)
+```
+CREATE DATABASE edudb;
+CREATE USER 'eduuser'@'localhost' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON edudb.* TO 'eduuser'@'localhost';
+```
+```
+pip install sqlalchemy
+pip install starlette
+pip install mysql
+```
